@@ -13,12 +13,23 @@ function ChallengeCard({ rollName } : Props){
     const [baseType, setBaseType] = useState(20);
     const [modifier, setModifier] = useState(0);
     const [chanceText, setChanceText] = useState("");
+    const [advType, setAdvType] = useState(0);
     
     const beat = (roll : Roll, target:number) => {
+        const MIN = roll.advType == 0 ? .05 : (roll.advType == -1 ? 0.0975 : 0.0025);
+        const MAX = roll.advType == 0 ? 0.95 : (roll.advType == -1 ? 0.9025 : 0.9975);
+        const bound = target - 1 - roll.modifier;
         const type = roll.baseType;
-        const goal = target - 1 - roll.modifier;
-        const result = Math.min( Math.max(1 - ( goal / type ), 0.05), 0.95 );
+
+        if(bound <= 0) { setChanceText(`${(MAX * 100).toFixed(2)}%`); return MAX; }
+        if(bound >= type ) { setChanceText(`${(MIN * 100).toFixed(2)}%`); return MIN; }
         
+        const complementary = roll.advType == 1 ? Math.pow(( bound / type ), 2 ) : ( bound / type);
+
+        console.log(`Goal : ${bound}`);
+        const baseResult = 1 - complementary;
+        const result = roll.advType == -1 ? Math.pow(baseResult, 2) : baseResult;
+
         setChanceText(`${(result * 100).toFixed(2)}%`);
 
         return result;
@@ -45,23 +56,37 @@ function ChallengeCard({ rollName } : Props){
                 type="number" 
                 className="form-control" 
                 defaultValue={0}
-                onChange={(e: React.ChangeEvent<HTMLInputElement>)=>{setModifier(parseInt(e.target.value));}}
+                onChange={e=>setModifier(parseInt(e.target.value))}
                 />
             </label>
             <label>
-                Target
+                Roll
+                <select 
+                defaultValue={0} 
+                className="form-select" 
+                aria-label="Default select example"
+                onChange={e=>setAdvType(parseInt(e.target.value))}
+                >
+                    <option value={1}>Advantage</option>
+                    <option value={0}>Straight Roll</option>
+                    <option value={-1}>Disadvantage</option>
+                </select>
+            </label>
+            <label>
+                Difficulty Class
                 <input name="targetVal" 
                 type="number" 
                 className="form-control" 
                 defaultValue={10}
-                onChange={(e: React.ChangeEvent<HTMLInputElement>)=>{setTarget(parseInt(e.target.value));}}
+                onChange={e=>setTarget(parseInt(e.target.value))}
                 />
             </label>
             <RollButton 
             roll={{
                 name : name,
                 baseType : baseType,
-                modifier : modifier
+                modifier : modifier,
+                advType : advType
             }} 
             target={target} 
             computeChallenge={beat}/>
