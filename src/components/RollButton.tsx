@@ -1,4 +1,4 @@
-import type { Roll } from "../classes/Roll";
+import type { Roll } from "../interfaces/Roll";
 
 interface Challenge {
     roll : Roll,
