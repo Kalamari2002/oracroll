@@ -1,17 +1,18 @@
 import { useState } from "react";
 
-import type { Roll } from "../interfaces/Roll";
-
 interface Props{
     rollName : string,
+    rollId : number,
     difficulty : number,
-    advantage : number
+    advantage : number,
+    onDelete : () => void
 }
 
-function ChallengeCard({ rollName, difficulty, advantage} : Props){
+function ChallengeCard({ rollName, rollId, difficulty, advantage, onDelete} : Props){
     
     const [name, setName] = useState(rollName);
     const [modifier, setModifier] = useState(0);
+    const [id] = useState(rollId);
 
     const rateText = () => {
         const subtraction = 20 - (difficulty - 1 - modifier);
@@ -23,31 +24,28 @@ function ChallengeCard({ rollName, difficulty, advantage} : Props){
         return (result * 100).toFixed(2); 
     }
 
-    return( <>
-        <form>
-            <label>
-                { rateText() }%
-            </label>
-            <label>
-                Title
+    return (
+        <tr>
+            <td>{id} { rateText() }%</td>
+            <td>
                 <input name="abilityTitle" 
                 type="text" 
                 className="form-control" 
-                defaultValue={rollName}
+                defaultValue={name}
                 onChange={e=>setName(e.target.value)}
                 />
-            </label>
-            <label>
-                Modifier
+            </td>
+            <td>
                 <input name="modifierVal" 
                 type="number" 
                 className="form-control" 
                 defaultValue={0}
                 onChange={e=>setModifier(parseInt(e.target.value))}
                 />
-            </label>
-        </form>
-        </>
+            </td>
+            <td><button onClick={onDelete}> X </button></td>
+        </tr>
+
     );
 }
 export default ChallengeCard;
