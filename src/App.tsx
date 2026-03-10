@@ -60,6 +60,11 @@ function App() {
         <th className='medium-cell'>Success Rate</th>
         <th className='long-cell'>Roll</th>
         <th className='short-cell'>Modifier</th>
+        <th className='short-cell'>d4</th>
+        <th className='short-cell'>d6</th>
+        <th className='short-cell'>d8</th>
+        <th className='short-cell'>d10</th>
+        <th className='short-cell'>d12</th>
       </tr>
       </thead>
       <tbody>

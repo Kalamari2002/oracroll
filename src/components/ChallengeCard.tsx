@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { compute } from "./ComputeTest";
 
 interface Props{
     rollName : string,
@@ -13,15 +14,21 @@ function ChallengeCard({ rollName, rollId, difficulty, advantage, onDelete} : Pr
     const [name, setName] = useState(rollName);
     const [modifier, setModifier] = useState(0);
     const [id] = useState(rollId);
+    
+    const [bonus, setBonus] = useState({
+        d4 : 0,
+        d6 : 0,
+        d8 : 0,
+        d10 : 0,
+        d12 : 0
+    });
+    
+    const changeBonus = (dice : string, value : number) => {
+        setBonus(prev => ({...prev,[dice] : value}));
+    }
 
     const rateText = () => {
-        const subtraction = 20 - (difficulty - 1 - modifier);
-        const base = Math.max(0.05, Math.min(0.95, subtraction / 20));
-        const result = advantage == -1 ? Math.pow(base, 2) : ( 
-                advantage == 1 ?  1 - Math.pow(1 - base, 2) :
-                base
-        ); 
-        return (result * 100).toFixed(2); 
+        return (compute(difficulty - modifier, advantage, bonus.d4, bonus.d6, bonus.d8, bonus.d10, bonus.d12) * 100).toFixed(2);
     }
 
     return (
@@ -41,6 +48,46 @@ function ChallengeCard({ rollName, rollId, difficulty, advantage, onDelete} : Pr
                 className="form-control" 
                 defaultValue={0}
                 onChange={e=>setModifier(parseInt(e.target.value))}
+                />
+            </td>
+            <td>
+                <input name="d4" 
+                type="number" 
+                className="form-control" 
+                defaultValue={0}
+                onChange={e=>changeBonus("d4",parseInt(e.target.value))}
+                />
+            </td>
+            <td>
+                <input name="d6" 
+                type="number" 
+                className="form-control" 
+                defaultValue={0}
+                onChange={e=>changeBonus("d6",parseInt(e.target.value))}
+                />
+            </td>
+            <td>
+                <input name="d8" 
+                type="number" 
+                className="form-control" 
+                defaultValue={0}
+                onChange={e=>changeBonus("d8",parseInt(e.target.value))}
+                />
+            </td>
+            <td>
+                <input name="d10" 
+                type="number" 
+                className="form-control" 
+                defaultValue={0}
+                onChange={e=>changeBonus("d10",parseInt(e.target.value))}
+                />
+            </td>
+            <td>
+                <input name="d12" 
+                type="number" 
+                className="form-control" 
+                defaultValue={0}
+                onChange={e=>changeBonus("d12",parseInt(e.target.value))}
                 />
             </td>
             <td><button onClick={onDelete}> X </button></td>
