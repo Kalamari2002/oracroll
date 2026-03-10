@@ -1,0 +1,97 @@
+:root{
+    --background-color :  rgb(46, 46, 46);
+    --contrast-color : rgb(200, 182, 19);
+    
+    --round-button-radius: 5px;
+}
+
+body{
+    background-color:var(--background-color);
+    color: var(--contrast-color);
+}
+.challenge-form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 10%;
+    height: 10%;
+    margin-bottom: 5%;
+}
+
+.dc-display{
+    margin-top: 5%;
+    margin-bottom: 5%;
+    font-size: 3em;
+    text-align: center;
+}
+
+.form-control {
+    background-color: transparent;
+    border-color: var(--contrast-color);
+    color: var(--contrast-color);
+    box-shadow: none;
+}
+
+.form-control:focus {
+    background-color: inherit;
+    border-color: inherit;
+    color: inherit;
+    box-shadow: none;
+}
+
+.round-button{
+    border-radius: var(--round-button-radius);
+    color: var(--background-color);
+    background-color: var(--contrast-color);
+}
+
+.advantageSelect{
+    background-color: var(--background-color);
+    color: var(--contrast-color);
+    border-style: solid;
+    border-color: var(--contrast-color);
+    border-radius: var(--round-button-radius);
+    border-width: 1px;
+}
+.selectChild__menu{
+    background-color: var(--background-color);
+    color: var(--contrast-color);
+    border-style: solid;
+    border-color: var(--contrast-color);
+    border-radius: var(--round-button-radius);
+    border-width: 1px;
+}
+.selectChild__value-container{
+    padding-left: 0.4rem;
+}
+.selectChild__option{
+    border-style: solid;
+    border-width: 0.4rem;
+    border-color: var(--background-color);
+    border-radius: var(--round-button-radius);
+    padding-top: 0.2rem;
+    padding-bottom: 0.2rem;
+}
+.selectChild__option--is-focused{
+    background-color: var(--contrast-color);
+    color: var(--background-color);
+    border-color: var(--contrast-color);
+}
+
+button{
+    color: var(--contrast-color);
+    font-size: 1.2rem;
+    border-color: var(--contrast-color);
+    border-style: solid;
+}
+
+main *{
+    /* border-style: solid;
+    border-color: red; */
+}
+main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}

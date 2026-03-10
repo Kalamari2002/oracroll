@@ -14,7 +14,7 @@ function ChallengeCard({ rollName, rollId, difficulty, advantage, onDelete} : Pr
     const [name, setName] = useState(rollName);
     const [modifier, setModifier] = useState(0);
     const [id] = useState(rollId);
-    
+
     const [bonus, setBonus] = useState({
         d4 : 0,
         d6 : 0,
@@ -22,18 +22,21 @@ function ChallengeCard({ rollName, rollId, difficulty, advantage, onDelete} : Pr
         d10 : 0,
         d12 : 0
     });
+
+    const prob = compute(difficulty - modifier, advantage, bonus.d4, bonus.d6, bonus.d8, bonus.d10, bonus.d12);
     
+    const rateCellStyle = {
+        color: `hsl(${prob * 100 * 1.2}, 80%, 50%)`,
+        fontSize: `1.2rem`
+    }
+
     const changeBonus = (dice : string, value : number) => {
         setBonus(prev => ({...prev,[dice] : value}));
     }
 
-    const rateText = () => {
-        return (compute(difficulty - modifier, advantage, bonus.d4, bonus.d6, bonus.d8, bonus.d10, bonus.d12) * 100).toFixed(2);
-    }
-
     return (
         <tr>
-            <td>{id} { rateText() }%</td>
+            <td style={rateCellStyle}>{ (prob * 100).toFixed(2) }%</td>
             <td>
                 <input name="abilityTitle" 
                 type="text" 
@@ -90,7 +93,7 @@ function ChallengeCard({ rollName, rollId, difficulty, advantage, onDelete} : Pr
                 onChange={e=>changeBonus("d12",parseInt(e.target.value))}
                 />
             </td>
-            <td><button onClick={onDelete}> X </button></td>
+            <td><button onClick={onDelete} className='round-button'> X </button></td>
         </tr>
 
     );

@@ -59,8 +59,6 @@ function d20Dist(adv){
 
 export function compute(DC, adv, d4, d6, d8, d10, d12){
 
-    //DIS = 0.25%
-    //STR = 5.00%
     const min = {
         0: 0.0025,
         1: 0.05,
