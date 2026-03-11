@@ -93,7 +93,7 @@ function ChallengeCard({ rollName, rollId, difficulty, advantage, onDelete} : Pr
                 onChange={e=>changeBonus("d12",parseInt(e.target.value))}
                 />
             </td>
-            <td><button onClick={onDelete} className='round-button'> X </button></td>
+            <td><button onClick={onDelete} className='round-button danger'> X </button></td>
         </tr>
 
     );

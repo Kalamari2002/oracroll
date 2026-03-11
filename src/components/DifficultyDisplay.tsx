@@ -35,6 +35,7 @@ function DifficultyDisplay({difficulty, setDifficulty, setAdvantage} : Props){
             defaultValue={difficulty}
             onChange={e=>setDifficulty(parseInt(e.target.value))}
             />
+
         </label>
         
         <Select<Option>

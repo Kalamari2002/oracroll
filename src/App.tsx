@@ -1,5 +1,6 @@
 import ChallengeCard from './components/ChallengeCard';
 import DifficultyDisplay from './components/DifficultyDisplay';
+import PageHeader from './components/PageHeader';
 import { useState } from "react";
 import { FaDiceD20 } from "react-icons/fa";
 import './App.css';
@@ -36,6 +37,7 @@ function App() {
   }
 
   return (<>
+    <PageHeader/>
     <main>
       <DifficultyDisplay difficulty={difficulty} setDifficulty={setDifficulty} setAdvantage={setAdvantage}/>
       <div className='table-content'>
@@ -45,7 +47,7 @@ function App() {
           <thead>
           <tr>
             <th className='medium-cell'>Success Rate</th>
-            <th className='long-cell'>Roll</th>
+            <th className='long-cell'>Roll Title</th>
             <th className='short-cell'>Modifier</th>
             <th className='short-cell'>d4</th>
             <th className='short-cell'>d6</th>
