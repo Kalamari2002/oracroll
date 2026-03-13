@@ -114,6 +114,14 @@ body{
     border-color: var(--danger-color);
 }
 
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button{
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    overflow: hidden;
+}
+
+
 button{
     color: var(--contrast-color);
     font-size: 1.2rem;
