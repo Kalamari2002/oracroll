@@ -4,7 +4,9 @@ This is a little application that predicts the chances of success of a d20 again
 * Add/Remove different rolls
 * Edit roll details, including title, modifier, and number of additional dices (d4, d6, d8, d10 and d12s, negative inputs mean subtracting die)
 * Success rate display for each roll, given their details
+
 ![Advantage](./public/screenshots/Advantage.png)
+
 ![Disadvantage](./public/screenshots/Disadvantage.png)
 
 
