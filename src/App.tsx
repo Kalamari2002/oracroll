@@ -19,7 +19,6 @@ function App() {
 
   const addRow = () =>{
     setIdCounter(idCounter + 1);
-    console.log(idCounter);
     setAbilityRows([
       ...abilityRows,
       {
@@ -30,7 +29,6 @@ function App() {
   };
 
   const removeRow = (rowId : number) => {
-    console.log(`Remove ${rowId}`)
     setAbilityRows(
       abilityRows.filter(a => a.id !== rowId)
     );
@@ -62,7 +60,6 @@ function App() {
               <ChallengeCard 
               key={ability.id} 
               rollName={ability.name} 
-              rollId={ability.id} 
               difficulty={difficulty} 
               advantage={advantage} 
               onDelete={ () => removeRow(ability.id) }

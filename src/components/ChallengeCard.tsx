@@ -3,17 +3,15 @@ import { compute } from "./ComputeTest";
 
 interface Props{
     rollName : string,
-    rollId : number,
     difficulty : number,
     advantage : number,
     onDelete : () => void
 }
 
-function ChallengeCard({ rollName, rollId, difficulty, advantage, onDelete} : Props){
+function ChallengeCard({ rollName, difficulty, advantage, onDelete} : Props){
     
     const [name, setName] = useState(rollName);
     const [modifier, setModifier] = useState(0);
-    const [id] = useState(rollId);
 
     const [bonus, setBonus] = useState({
         d4 : 0,
